@@ -14,6 +14,9 @@
             <button type="button" class="btn btn-secondary btn-lg">
                 <a href="{{ route('viewProduct') }}" class="text-decoration-none text-white">Show All Books</a>
             </button>
+            <button type="button" class="btn btn-secondary btn-lg">
+                <a href="{{ url('viewProductList') }}" class="text-decoration-none text-white">Show Product List</a>
+            </button>
         </div>
     </div>
     <br><br>

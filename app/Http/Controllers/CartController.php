@@ -6,7 +6,7 @@ use DB;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\myCart;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 class CartController extends Controller
@@ -33,8 +33,8 @@ class CartController extends Controller
         ->where('my_carts.userID','=',Auth::id())
         //->get();
         ->paginate(5);
-        //select my_carts.quantity as cartQty,my_carts.id as cid, products.* from my_carts left join products on products.id=my_carts.productID where my_cart.orderID='' and my_carts.userID='Auth::id()' 
-          $this->cartItem();   
+        //select my_carts.quantity as cartQty,my_carts.id as cid, products.* from my_carts left join products on products.id=my_carts.productID where my_cart.orderID='' and my_carts.userID='Auth::id()'
+          $this->cartItem();
         return view('myCart')->with('products',$carts);
     }
 
@@ -43,13 +43,33 @@ class CartController extends Controller
         $noItem=DB::table('my_carts')
         ->leftjoin('products','products.id','=','my_carts.productID')
         ->select(DB::raw('COUNT(*) as count_item'))
-        ->where('my_carts.orderID','=','') 
+        ->where('my_carts.orderID','=','')
         ->where('my_carts.userID','=',Auth::id())
         ->groupBy('my_carts.userID')
         ->first();
         if($noItem){
             $cartItem=$noItem->count_item;
         }
-        Session()->put('cartItem',$cartItem); 
+        Session()->put('cartItem',$cartItem);
+    }
+    public function addToCart($id)
+    {
+        $product = Product::findOrFail($id);
+
+        $cart = session()->get('cart', []);
+
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image
+            ];
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 }

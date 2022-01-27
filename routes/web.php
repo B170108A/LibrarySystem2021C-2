@@ -35,11 +35,13 @@ Route::get('/editProduct/{id}',[App\Http\Controllers\ProductController::class, '
 Route::post('/updateProduct',[App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct');
 Route::get('deleteProduct/{id}',[App\Http\Controllers\ProductController::class,'delete'])->name('deleteProduct');
 Route::get('/productDetail/{id}',[App\Http\Controllers\ProductController::class,'productdetail'])->name('product.detail');
+Route::get('/viewProductList',[App\Http\Controllers\ProductController::class,'viewProductList'])->name('viewProductList');
 
-Route::post('addCart',[App\Http\Controllers\CartController::class,'add'])->name('add.to.cart');
+//Route::post('/addCart',[App\Http\Controllers\CartController::class,'add'])->name('add.to.cart');
+Route::post('/add-to-cart/{id}',[App\Http\Controllers\CartController::class,'addToCart'])->name('add.to.cart');
 Route::get('/myCart',[App\Http\Controllers\CartController::class, 'view'])->name('myCart');
 
-Route::post('\checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
+Route::post('/checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
 Auth::routes();
 
 Route::get('/products',[App\Http\Controllers\ProductController::class, 'viewProduct'])->name('products');

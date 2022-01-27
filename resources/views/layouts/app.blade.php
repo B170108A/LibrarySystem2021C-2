@@ -37,6 +37,9 @@
                             <a class="nav-link" href="{{ url('add')}}">{{ __('Add') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('addToCart')}}">{{ __('Add To Cart') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('myprofile')}}">{{ __('My Profile') }}</a>
                         </li>
                     </ul>

@@ -14,7 +14,7 @@ class ProductController extends Controller
         $categoryID = Category::all();
         return view('addProduct',compact('categoryID'));
     }
-    
+
     public function add(){
         $r=request();
         $image=$r->file('productImage');
@@ -83,7 +83,7 @@ class ProductController extends Controller
 
     public function viewProduct(){
         (new CartController)->cartItem();
-        $products=Product::all;
+        $products=Product::all();
         return view('viewProducts')->with('products',$products);
     }
 
@@ -104,5 +104,10 @@ class ProductController extends Controller
         return view('viewProducts')->with('products',$products);
     }
 
+    public function viewProductList(){
+        (new CartController)->cartItem();
+        $products=Product::all();
+        return view('productList')->with('products',$products);
+    }
 }
 

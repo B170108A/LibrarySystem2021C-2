@@ -10,6 +10,11 @@ use App\Models\Category;
 
 class ProductController extends Controller
 {
+    public function index(){
+        $categoryID = Category::all();
+        return view('addProduct',compact('categoryID'));
+    }
+    
     public function add(){
         $r=request();
         $image=$r->file('productImage');
@@ -22,7 +27,7 @@ class ProductController extends Controller
             'quantity'=>$r->productQuantity,
             'price'=>$r->productPrice,
             'CategoryID'=>$r->CategoryID,
-            'image'=>$imageName,            
+            'image'=>$imageName,
         ]);
         Session::flash('success',"Product create successfully!");
         return redirect()->route('viewProduct');
@@ -52,14 +57,14 @@ class ProductController extends Controller
         $imageName=$image->getClientOriginalName();
         $products->image=$imageName;
         }
-       
+
         $products->name=$r->productName;
         $products->description=$r->productDescription;
         $products->quantity=$r->productQuantity;
         $products->price=$r->productPrice;
         $products->CategoryID=$r->CategoryID;
         $products->save();
-            
+
         Session::flash('success',"Product update successfully!");
         return redirect()->route('viewProduct');
     }
@@ -79,19 +84,19 @@ class ProductController extends Controller
     public function viewProduct(){
         (new CartController)->cartItem();
         $products=Product::all;
-        return view('viewProducts')->with('products',$products); 
+        return view('viewProducts')->with('products',$products);
     }
 
     public function searchProduct(){
         $r=request();
         $keyword=$r->keyword;
         $products=DB::table('products')->where('name','like','%'.$keyword.'%')->get();
-        return view('viewProducts')->with('products',$products); 
+        return view('viewProducts')->with('products',$products);
     }
 
     public function phone(){
         $products=DB::table('products')->where('CategoryID','=','1')->get();
-        return view('viewProducts')->with('products',$products); 
+        return view('viewProducts')->with('products',$products);
     }
 
     public function computer(){

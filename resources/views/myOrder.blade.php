@@ -1,15 +1,15 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
-<div class="row"> 
+<div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-6">
         <br><br>
         <table class="table table-bordered">
             <thead>
-                <tr> 
+                <tr>
                     <td>Order ID</td>
                     <td>Payment Status</td>
-                    <td>Amount</td> 
+                    <td>Amount</td>
                 </tr>
             </thead>
             <tbody>
@@ -17,13 +17,13 @@
                 <tr>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->paymentStatus }}</td>
-                    <td>RM {{ $order->amount }}</td> 
+                    <td>RM {{ $order->amount }}</td>
                 </tr>
-                @endforeach 
+                @endforeach
             </tbody>
         </table>
     </div>
-    <div class="col-sm-3"></div>  
+    <div class="col-sm-3"></div>
 </div>
 <div class="row">
     <div class="col-sm-2"></div>
@@ -31,4 +31,4 @@
 </div>
 
 
-@endsection 
+@endsection

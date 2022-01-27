@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
-<div class="row"> 
+<div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-6">
         <br><br>
@@ -29,10 +29,10 @@
                     <td>{{ $product->catName }}</td>
                     <td><a href="{{route('editProduct',['id'=>$product->id])}}" class="btn btn-warning btn-xs">Edit</a>&nbsp;<a href="{{ route('deleteProduct',['id'=>$product->id])}}" class="btn btn-danger btn-xs" onClick="return confirm('Are you sure to delete?')">Delete</a></td>
                 </tr>
-                @endforeach 
+                @endforeach
             </tbody>
         </table>
     </div>
-    <div class="col-sm-3"></div>  
-</div> 
-@endsection 
+    <div class="col-sm-3"></div>
+</div>
+@endsection

@@ -1,12 +1,12 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
-<div class="row"> 
+<div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
         <br><br>
         <div class="card-body">
             <form action="{{route('add.to.cart')}}" method="POST">
-            @CSRF 
+            @CSRF
             @foreach($products as $product)
             <div class="row">
                 <div class="col-md-3">
@@ -26,8 +26,8 @@
             </div>
             @endforeach
             </form>
-        </div>           
+        </div>
     </div>
-    <div class="col-sm-2"></div>  
-</div> 
-@endsection 
+    <div class="col-sm-2"></div>
+</div>
+@endsection

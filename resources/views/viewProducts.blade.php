@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
 <div class="row">
     <div class="col-sm-3"></div>
@@ -23,18 +23,18 @@
                     <td>{{  $product->id}}</td>
                     <td ><img src="{{asset('images/')}}/{{  $product->image }}" alt="" width="100" class="img-fluid"></td>
                     <td>{{  $product->name }}</td>
-                    <td>{{  $product->description }}</td>       
+                    <td>{{  $product->description }}</td>
                     <td>{{  $product->price }}</td>
                     <td>{{  $product->quantity }}</td>
                     <td>{{  $product->catName }}</td>
                     <td><a href="{{route('editProduct',['id'=>$product->id])}}" class="btn btn-warning btn-xs">Edit</a>
                     <a href="{{route('deleteProduct',['id'=>$product->id])}}" class="btn btn-danger btn-xs" onClick="return confirm('Are you sure to delete?')">Delete</a></td>
-                </tr>  
+                </tr>
                 @endforeach
-            
+
             <tbody>
        </table>
-       
+
     </div>
     <div class="col-sm-3"></div>
 

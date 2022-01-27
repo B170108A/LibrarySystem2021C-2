@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
-<div class="row"> 
+<div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
         <br><br>
@@ -36,10 +36,10 @@
             </select>
             </div>
             <button type="submit" class="btn btn-primary">Add New</button>
-            
+
         </form>
         <br><br>
     </div>
-    <div class="col-sm-3"></div>  
-</div> 
-@endsection 
+    <div class="col-sm-3"></div>
+</div>
+@endsection

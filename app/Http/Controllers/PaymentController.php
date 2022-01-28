@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Stripe;
-use DB;
-use Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\myOrder;
 use App\Models\myCart;
 use Session;
@@ -19,18 +19,18 @@ class PaymentController extends Controller
 
     public function paymentPost(Request $request)
     {
-	       
+
 	Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-                "amount" => $request->sub*100,  
+                "amount" => $request->sub*100,
                 "currency" => "MYR",
                 "source" => $request->stripeToken,
-                "description" => "This payment is testing purpose of southern online",
+                "description" => "This payment is testing purpose of Library System",
         ]);
- 
+
         $newOrder=myOrder::Create([
             'paymentStatus'=>'Done',
-            'userID'=>Auth::id(), 
+            'userID'=>Auth::id(),
             'amount'=>$request->sub,
         ]);
 
@@ -43,9 +43,9 @@ class PaymentController extends Controller
             $carts->save();
         }
         (new CartController)->cartItem();
-        $email="shipeng7128@gmail.com";
+        $email="B170108Asc.edu.my";
         Notification::route('mail',$email)->notify(new \App\Notifications\orderPaid($email));
-        
+
         return back();
     }
 }

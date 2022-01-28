@@ -10,7 +10,7 @@
             @foreach($products as $product)
             <div class="row">
                 <div class="col-md-3">
-                   <h5 class="card-title">{{ $product->name }}</h5>
+                   <h5 class="card-title"><H1>{{ $product->name }}</H1></h5>
                    <input type="hidden" name="id" value="{{ $product->id }}">
                    <img src="{{asset('images/')}}/{{ $product->image }}" alt="" width="100%" class="img-fluid">
                 </div>
